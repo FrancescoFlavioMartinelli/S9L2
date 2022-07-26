@@ -1,1 +1,35 @@
-<p>first works!</p>
+<p>Property Binding - String Interpolation -> binding a 1 via
+    <br>Ci permette di visualizzare proprietà del model nel template -> se il model si aggiorna cambia anche la view
+    <!-- <br>si usa con {{}} -->
+    <br><br><b>{{propertyBindingText}}</b>
+</p>
+<p>
+    Property Binding - DataBinding -> binding a 1 via
+    <br>ci permette di usare variabili per decidere il valore di precisi attributi
+    <br>si usa con []
+    <button [disabled]="isDisabled">disattivato</button>
+</p>
+<p>
+    Event Binding -> binding a 1 via
+    <br>ci permette di osservare eventi sugli elementi della view e associarne un esecuizione sulla classe (metodo o logica)
+    <br>si usa con ()
+    <button (click)="cambiaTesto()">PROVA EVENT BINDER</button>
+    <button (click)="isDisabled = !isDisabled">Attiva pulsante</button>
+
+</p>
+
+
+<p>
+    Two Way Binding
+    <br>ci permette di tenere collegate la view e il model. Modifiche alla propreità nel model mopdificherà il target nella view, se la view cambia la propreità cambierà valore nel model
+    <br>
+    Per usare ngModel (per gli input) importare in app.module.ts nell'array imports il modulo FormsModule
+    <br>
+    <!-- <input type="text" [value]="inputValue" (input)="inputValue = this.value"> -->
+    <!-- <tag [(target)]="expression"> -->
+    <br>Input:
+    <br><input type="text" [(ngModel)]="inputValue">
+    <br>Output:
+    <br>{{inputValue}}
+    <br><button (click)="reset()">RESET</button>
+</p>

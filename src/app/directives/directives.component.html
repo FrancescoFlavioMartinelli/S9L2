@@ -1,0 +1,71 @@
+<p>
+    Le directives servono ad applciare logica su precisi elementi html del template
+
+<br>Le directives possono essere create custom
+<br>Oggi vedremo le directives [ngClass], [ngStyle], *ngFor, *ngIf
+</p>
+
+
+<!-- NG CLASS -->
+<p [ngClass]="'verde'">per inserire delle classi a un elemento usiamo
+    <br>[ngClass]="'classe1 classe2'" !!Attenzione che come valore va assegnata una stringa
+    <br>[ngClass]="['classe1', 'classe2']"
+</p>
+<p [ngClass]="classeProp">Posso impostare il valore stringa della classe anche con una propretà
+</p>
+<p [ngClass]="arrClassi">Posso anche impostare un array di stringhe per assegnare tutte le classi</p>
+
+<p [ngClass]="{'verde': true, 'rosso': false, 'bold': true}">Posso inserire un oggeto con delle stringhe come propreità e un boolean per indicare se la classe va inserita o meno</p>
+
+
+<p [ngClass]="{'bold': isBold, 'rosso':isRosso, 'verde':!isRosso}">Posso usare le proprietà per decidere se una classe vada o meno assegnata</p>
+<button (click)="isBold = !isBold">TOGGLE BOLD</button>
+<button (click)="isRosso = !isRosso">TOGGLE COLOR</button>
+
+
+<!-- NG STYLE -->
+<input type="number" [(ngModel)]="fontSize" >
+<p [ngStyle]="{'font-size': fontSize+'px', 'color': 'blue'}">Posso indicare una proprietà css nello nel ngStyle impostando anche propreità come valori</p>
+<p [ngStyle]="styleObj">Posso usare anche l'intero oggetto</p>
+<button (click)="editStyleObj()"></button>
+
+<!-- NG IF -->
+<button (click)="isVisible = !isVisible">Mostra/nascondi</button>
+<p *ngIf="isVisible">Possiamo decidere di visualizzare o nascondere un elemento dal tmeplate in base a un controllo codizionale usando
+    <br>*ngIf="condizione"</p>
+
+<p *ngIf="isVisible; else bloccoElse">Possiamo anche indicare una parte di html da visualizzare come ELSE
+    <br>*ngIf="condzione;else elseBlock"
+    <br><br> nell'elemento else indicare
+    <br>#elseBlock
+</p>
+<ng-template #bloccoElse>Questo viene visualizzato solo se il testo sopra non è visibile</ng-template>
+<!-- Se vogliamo usare un template sia per il caso positivo che negativo possiamo usare il then. Da usare per template riutilizzabili
+
+<div *ngIf="isVisible; then bloccoTrue; else bloccoFalse"></div>
+<ng-template #bloccoTrue>Il ngIf è TRUE</ng-template>
+<ng-template #bloccoFalse>Il ngIf è FALSE</ng-template>
+
+
+<ng-template #messaggioSuccesso>
+    <p style="color:red">ERRORE DI CARICAMENTO</p>
+</ng-template>
+<ng-template #messaggioErrore>
+    <p style="color:red">ERRORE DI CARICAMENTO</p>
+</ng-template> -->
+
+<!-- NG FOR -->
+<p>Possiamo far generare alla directive più copie di un blocco di codice con
+    <br>*ngFor="let e of arr; index as i;first ad firstItem"</p>
+
+    <br>*ngFor="let e of arr" -> genera il blocco per opngi elemento, entro quel tag possiamo usare e come elemento dell'attuale giro del ciclo
+
+    <br>index as i -> possiamo avere l'indice del giro nella variabile i
+
+    <br>first as firstItem -> possiamo usare firstItem come controllo if="firstItem" allora siamo al primo elemento
+
+    <ul>
+        <li *ngFor="let e of arr; index as i; first as firstLetter">
+            <span [ngClass]="{'rosso': firstLetter}">Elemento {{i}} - {{e}}</span>
+        </li>
+    </ul>

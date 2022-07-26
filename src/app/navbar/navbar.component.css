@@ -1,0 +1,22 @@
+nav {
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    padding: 20px;
+    min-height: 6vh;
+    background-color: orange;
+    align-items: center;
+}
+
+a {
+    margin-right: 10px;
+    color: white
+}
+
+.active {
+    opacity: .8;
+    pointer-events: none;
+    color: grey;
+}
